@@ -3,7 +3,7 @@
     <headForm/>
     <ListForm/>
     <!-- <corousel/> -->
-    <deneme/>
+    <couresel/>
     <cards/>
     <br>
     <shop2/>

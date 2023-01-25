@@ -17,7 +17,7 @@
                             <input type="Şifre" class="form-control" id="exampleInputPassword1"
                                 placeholder="Şifre">
                             <div class="form-group">
-                                <button type="button" class="btn btn-warning" id="sign-in">Giriş Yap</button>
+                                <button type="button" class="btn btn-warning" id="signIn">Giriş Yap</button>
                                 <p>Oturum açarak, Amazon'un Kullanım ve Satış Koşulları'nı kabul etmiş olursunuz. Kişisel verilerinizin Amazon tarafından nasıl işlendiğine ilişkin detaylı bilgi için Gizlilik Bildirimi, Çerez Bildirimi ve İlgi Alanına Dayalı Tanıtımları inceleyebilirsiniz.</p>
                                 
                                  <a href="^#">Yardımamı ihtiyacınız var?</a>
@@ -39,3 +39,44 @@
     </div>
    
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      snackbar: false,
+      snackbarText: 'No error message',
+      auth: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    login() {
+      let that = this
+      this.$fire.auth.signInWithEmailAndPassword(this.auth.email, this.auth.password)
+      .catch(function (error){
+        that.snackbarText = error.message
+        that.snackbar = true
+      }).then((user) => {
+        //we are signed in
+        alert('deneme')
+        $nuxt.$router.push('/')
+      })
+    },
+    forgotPassword() {
+      let that = this
+      this.$fire.auth.sendPasswordResetEmail(this.auth.email)
+      .then(function (){
+        that.snackbarText = 'reset link sent to ' + that.auth.email
+        that.snackbar = true
+      })
+      .catch(function (error) {
+        that.snackbarText = error.message
+        that.snackbar = true
+      })
+    }
+  }
+}
+</script>
