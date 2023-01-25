@@ -50,8 +50,8 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [ '@nuxtjs/vuetify'
-  
+  buildModules: [ '@nuxtjs/vuetify',
+    '@nuxtjs/pwa'
     
   ],
   //router: {
@@ -65,5 +65,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  pwa: {
+    manifest: {
+      name: 'AmazonApp'
+    }
   }
+
 }
